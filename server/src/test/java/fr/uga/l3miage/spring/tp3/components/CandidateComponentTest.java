@@ -1,4 +1,4 @@
-package fr.uga.l3miage.spring.tp3.component;
+package fr.uga.l3miage.spring.tp3.components;
 import fr.uga.l3miage.spring.tp3.components.CandidateComponent;
 import fr.uga.l3miage.spring.tp3.models.CandidateEntity;
 import fr.uga.l3miage.spring.tp3.models.CandidateEvaluationGridEntity;
