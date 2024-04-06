@@ -1,4 +1,4 @@
-package fr.uga.l3miage.spring.tp3.components;
+package fr.uga.l3miage.spring.tp3.component;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

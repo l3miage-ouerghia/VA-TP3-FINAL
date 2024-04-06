@@ -1,4 +1,4 @@
-package fr.uga.l3miage.spring.tp3.components;
+package fr.uga.l3miage.spring.tp3.component;
 
 import fr.uga.l3miage.spring.tp3.components.SessionComponent;
 import fr.uga.l3miage.spring.tp3.models.EcosSessionEntity;
