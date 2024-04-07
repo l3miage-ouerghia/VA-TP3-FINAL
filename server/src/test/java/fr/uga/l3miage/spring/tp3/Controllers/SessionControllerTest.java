@@ -57,7 +57,7 @@ public class SessionControllerTest {
         ResponseEntity<SessionResponse> responseEntity = testRestTemplate.postForEntity("/api/sessions/create", request, SessionResponse.class);
 
         // Then
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201); // Cambio il codice di stato atteso a 201
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
         assertThat(responseEntity.getBody()).isNotNull();
     }
 
@@ -77,8 +77,7 @@ public class SessionControllerTest {
 
         // Then
         assertThat(responseEntity.getBody()).isNull();
-        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400); // Cambio il codice di stato atteso a 400
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400);
     }
-
 
 }

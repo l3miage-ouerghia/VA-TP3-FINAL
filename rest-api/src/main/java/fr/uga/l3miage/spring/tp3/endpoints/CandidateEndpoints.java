@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @Tag(name = "Gestion des candidat")
 @RestController
 @RequestMapping("/api/candidates")
@@ -22,4 +24,11 @@ public interface CandidateEndpoints {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{candidateId}/average")
     Double getCandidateAverage(@PathVariable Long candidateId);
+
+    @PostMapping("/test-centers/{testCenterId}/add-candidates")
+    @Operation(description = "Ajoute une collection d'étudiants à un centre de test")
+    @ApiResponse(responseCode = "202", description = "Les étudiants ont été correctement ajoutés au centre de test")
+    @ApiResponse(responseCode = "404", description = "Le centre de test ou l'étudiant n'est pas trouvé", content = @Content)
+    @ApiResponse(responseCode = "400", description = "Requête incorrecte", content = @Content)
+    Boolean addCandidatesToTestCenter(@PathVariable Long testCenterId, @RequestBody Set<Long> candidateIds);
 }
