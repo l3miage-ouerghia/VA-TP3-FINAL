@@ -1,5 +1,6 @@
 package fr.uga.l3miage.spring.tp3.component;
 import fr.uga.l3miage.spring.tp3.components.CandidateComponent;
+import fr.uga.l3miage.spring.tp3.exceptions.technical.CandidateNotFoundException;
 import fr.uga.l3miage.spring.tp3.models.CandidateEntity;
 import fr.uga.l3miage.spring.tp3.models.CandidateEvaluationGridEntity;
 import fr.uga.l3miage.spring.tp3.repositories.CandidateEvaluationGridRepository;
@@ -13,10 +14,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -57,5 +60,31 @@ public class CandidateComponentTest {
         // Then
         assertThat(candidateEntities).isEmpty();
     }
+
+    @Test
+    void getCandidatByIdNotFound() {
+        // Given
+        Long candidatId = 1L;
+        when(candidateRepository.findById(candidatId)).thenReturn(Optional.empty());
+
+        // When & Then
+        assertThrows(CandidateNotFoundException.class, () -> {
+            candidateComponent.getCandidatById(candidatId);
+        });
+    }
+
+    @Test
+    void getAllEliminatedCandidateNotFound() {
+        // Given
+        when(candidateEvaluationGridRepository.findAllByGradeIsLessThanEqual(5)).thenReturn(new HashSet<>());
+
+        // When
+        Set<CandidateEntity> result = candidateComponent.getAllEliminatedCandidate();
+
+        // Then
+        assertThat(result).isEmpty();
+    }
+
+
 
 }
