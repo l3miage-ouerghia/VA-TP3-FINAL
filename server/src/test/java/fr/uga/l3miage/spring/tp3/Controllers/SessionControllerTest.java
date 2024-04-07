@@ -67,7 +67,7 @@ public class SessionControllerTest {
     }
 
     @Test
-    void createSessionWithInvalidExamId() {
+    void createSessionNotSuccess() {
 
         Set<Long> invalidExamIds = new HashSet<>();
         invalidExamIds.add(-5L);
@@ -79,10 +79,8 @@ public class SessionControllerTest {
                 .ecosSessionProgrammation(SessionProgrammationCreationRequest.builder().steps(new HashSet<>()).build())
                 .build();
 
-        // Envoyer la requête et obtenir la réponse
         ResponseEntity<String> responseEntity = testRestTemplate.postForEntity("/api/sessions/create", request, String.class);
 
-        // Vérifier que la réponse est bien un statut 400 (BAD_REQUEST)
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(HttpStatus.BAD_REQUEST.value());
     }
 }
